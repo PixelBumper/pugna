@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask whatIsGround;
     public Transform groundCheck;
+    public Transform wallCheck;
 
     public Animator anim;
 
@@ -37,6 +38,9 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsGrounded", isOnGround);
         }
 
+
+        bool isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, groundRadius, whatIsGround);
+
         // Movement!
         float move = Input.GetAxis("Horizontal");
         if (anim != null)
@@ -44,7 +48,7 @@ public class PlayerController : MonoBehaviour
             anim.SetFloat("Speed", Mathf.Abs(move));
         }
 
-        ourRigidBody.velocity = new Vector2(move * maxSpeed, ourRigidBody.velocity.y);
+        ourRigidBody.velocity = isTouchingWall ? new Vector2(0, ourRigidBody.velocity.y) : new Vector2(move * maxSpeed, ourRigidBody.velocity.y);
 
         if (move > 0 && !isFacingRight)
         {
@@ -60,9 +64,10 @@ public class PlayerController : MonoBehaviour
     {
         if (isOnGround && Input.GetButton("Jump"))
         {
+            isOnGround = false;
             if (anim != null)
             {
-                anim.SetBool("IsGrounded", false);
+                anim.SetBool("IsGrounded", isOnGround);
             }
             ourRigidBody.AddForce(new Vector2(0, jumpForce));
         }
