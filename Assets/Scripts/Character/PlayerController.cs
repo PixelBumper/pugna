@@ -11,10 +11,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D ourRigidBody;
 
     private bool isOnGround = false;
-    private float groundRadius = 0.15f;
 
     public LayerMask whatIsGround;
-    public Transform groundCheck;
+    public Transform groundCheckTopLeft;
+    public Transform groundCheckBottomRight;
     public Transform wallCheckTopLeft;
     public Transform wallCheckBottomRight;
 
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // Check for ground
-        isOnGround = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+        isOnGround = Physics2D.OverlapArea(groundCheckTopLeft.position, groundCheckBottomRight.position, whatIsGround);
         if (anim != null)
         {
             anim.SetBool("IsGrounded", isOnGround);
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         bool isTouchingWall = Physics2D.OverlapArea(wallCheckTopLeft.position, wallCheckBottomRight.position, whatIsGround);
 
         // Movement!
-        float move = Input.GetAxis("Horizontal"+input);
+        float move = Input.GetAxis("Horizontal" + input);
         if (anim != null)
         {
             anim.SetFloat("Speed", Mathf.Abs(move));
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
             {
                 anim.SetBool("IsGrounded", isOnGround);
             }
-            ourRigidBody.AddForce(new Vector2(0, jumpForce));
+            ourRigidBody.velocity = new Vector2(ourRigidBody.velocity.x, jumpForce);
         }
     }
 
