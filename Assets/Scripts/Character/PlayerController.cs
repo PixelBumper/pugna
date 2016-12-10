@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 700f;
 
     public string input = "_INPUT1";
+    public float shootCooldownSeconds = 1f;
+    private float currentShootCooldownSeconds = 0f;
 
 
     // Use this for initialization
@@ -73,6 +75,18 @@ public class PlayerController : MonoBehaviour
             }
             ourRigidBody.velocity = new Vector2(ourRigidBody.velocity.x, jumpForce);
         }
+
+        if (currentShootCooldownSeconds > 0f)
+        {
+            currentShootCooldownSeconds -= Time.deltaTime;
+        }
+        
+        if (currentShootCooldownSeconds <= 0f && (Math.Abs(Input.GetAxis("Fire1"+input)) > 0.001f || Input.GetButton("Fire1"+input)))
+        {
+            currentShootCooldownSeconds = shootCooldownSeconds;
+            Debug.Log("Bam!");
+        }
+
     }
 
     void Flip()
