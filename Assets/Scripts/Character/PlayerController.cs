@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     public float jumpForce = 700f;
 
+    public string input = "_INPUT1";
+
 
     // Use this for initialization
 	void Start ()
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Movement!
-        float move = Input.GetAxis("Horizontal");
+        float move = Input.GetAxis("Horizontal"+input);
         if (anim != null)
         {
             anim.SetFloat("Speed", Mathf.Abs(move));
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (isOnGround && Input.GetButton("Jump"))
+        if (isOnGround && Input.GetButton("Jump"+input))
         {
             if (anim != null)
             {
