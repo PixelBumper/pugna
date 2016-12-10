@@ -11,11 +11,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D ourRigidBody;
 
     private bool isOnGround = false;
-    private float groundRadius = 0.2f;
+    private float groundRadius = 0.15f;
 
     public LayerMask whatIsGround;
     public Transform groundCheck;
-    public Transform wallCheck;
+    public Transform wallCheckTopLeft;
+    public Transform wallCheckBottomRight;
 
     public Animator anim;
 
@@ -38,8 +39,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsGrounded", isOnGround);
         }
 
-
-        bool isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, groundRadius, whatIsGround);
+        bool isTouchingWall = Physics2D.OverlapArea(wallCheckTopLeft.position, wallCheckBottomRight.position, whatIsGround);
 
         // Movement!
         float move = Input.GetAxis("Horizontal");
