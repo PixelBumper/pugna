@@ -190,4 +190,5 @@ internal class PlayerState
 {
     private CharacterConfiguration selectedCharacter = null;
     private bool playing=false;
+    private String joystick;
 }
