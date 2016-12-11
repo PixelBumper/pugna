@@ -29,7 +29,7 @@ public class Item : MonoBehaviour
         if ("Player".Equals(LayerMask.LayerToName(collision.gameObject.layer)))
         {
             collision.gameObject.SendMessage("CollectItem", item);
-            Destroy(gameObject);
+            Destroy();
         }
 
     }
@@ -46,6 +46,11 @@ public class Item : MonoBehaviour
         }
     }
 
+
+    public void Destroy()
+    {
+        gameObject.SetActive(false);
+    }
 //    void OnTriggerEnter(Collider other)
 //    {
 //        Debug.LogError("wtf");
