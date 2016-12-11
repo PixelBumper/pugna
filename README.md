@@ -6,20 +6,27 @@ Time travellers find themselves inside a time machine and they want to get back 
 
 Pick up batteries being carried by rats that live inside the machinery before the other team in order to travel to your time.
 
+![game1](Screenshots/in_game_future.png "Traveling to the future")
+![game2](Screenshots/in_game_past.png "Traveling to the past")
+
 ## Controls
-Defailt controls:
+Default controls:
+
 Player 1
  - w,a,s,d to move
  - c to shoot
  - f to kick
  - space to jump
+
 Player 2
  - u, h, j, k to move 
  - l to shoot
  - p to kick
  - m to jump
+
+ ![tutorial](Screenshots/tutorial.png "Tutorial control")
  
-Note
+** Note **
  - Controllers are supported, but need to be configured before the game
  - Players have 3 bullets each, powerups can be picked to shoot more
 
