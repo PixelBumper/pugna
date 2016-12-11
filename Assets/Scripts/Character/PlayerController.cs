@@ -152,11 +152,11 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        if (Math.Abs(Input.GetAxis("Fire1" + input)) > 0.001f || Input.GetButton("Fire1" + input))
+        if (Math.Abs(Input.GetAxis("Fire1" + input)) > 0.2f || Input.GetButton("Fire1" + input))
         {
             Shoot();
         }
-        else if(Math.Abs(Input.GetAxis("Fire2" + input)) > 0.001f || Input.GetButton("Fire2" + input))
+        else if(Math.Abs(Input.GetAxis("Fire2" + input)) > 0.2f || Input.GetButton("Fire2" + input))
         {
             Kick();
         }

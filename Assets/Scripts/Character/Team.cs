@@ -19,6 +19,12 @@ public class Team : MonoBehaviour
     {
         var firstTeamComponent = first.GetComponent<Team>();
         var secondTeamComponent = second.GetComponent<Team>();
+
+        if (firstTeamComponent == null || secondTeamComponent == null)
+        {
+            return true;
+        }
+
         if (firstTeamComponent && secondTeamComponent)
         {
             return firstTeamComponent.team == secondTeamComponent.team;
