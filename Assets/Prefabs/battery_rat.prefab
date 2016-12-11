@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 70475241194726594}
   - component: {fileID: 50114459489996854}
   - component: {fileID: 114708686099560340}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: battery_rat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
