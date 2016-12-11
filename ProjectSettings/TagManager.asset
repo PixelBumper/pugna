@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BulletPool
   - BackgroundChanger
+  - KickPool
   layers:
   - Default
   - TransparentFX
