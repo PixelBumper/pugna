@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 70666935138256362}
   - component: {fileID: 50184056150462464}
   - component: {fileID: 114837310449941150}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ammo_rat
   m_TagString: Untagged
   m_Icon: {fileID: 0}

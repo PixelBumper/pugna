@@ -87,6 +87,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1441842961044772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4002990973566840}
+  - component: {fileID: 114736088872587184}
+  m_Layer: 0
+  m_Name: AmmoRatPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1455074084238586
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +148,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1742371727404342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4530830298618790}
+  - component: {fileID: 114918074638302572}
+  m_Layer: 0
+  m_Name: BatteryRatPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1790563892187614
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +194,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4002990973566840
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1441842961044772}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4141822793863886}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4071215063347312
 Transform:
   m_ObjectHideFlags: 1
@@ -194,6 +239,8 @@ Transform:
   - {fileID: 4071215063347312}
   - {fileID: 4471331687046388}
   - {fileID: 4899058273264684}
+  - {fileID: 4530830298618790}
+  - {fileID: 4002990973566840}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -235,6 +282,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4141822793863886}
   m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4530830298618790
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1742371727404342}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4141822793863886}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4599983297306566
 Transform:
@@ -312,6 +372,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b075a315313174d0bae9a4691e1d0cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chanceForBatteryRat: 0.3
+  maximumRats: 5
+  minTimeBetweenSpawns: 1
+  maxTimeBetweenSpawns: 2
   spawningPoints:
   - {fileID: 1843983724043794}
   - {fileID: 1400511869728256}
@@ -322,3 +386,35 @@ MonoBehaviour:
   - {fileID: 1790563892187614}
   - {fileID: 1530762544672452}
   - {fileID: 1455074084238586}
+--- !u!114 &114736088872587184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1441842961044772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d11b2dfe80bf4ba0b78fa78bbc2a521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObject: {fileID: 1724315561768658, guid: f7771018c10bb4d6982da4064adb9d16,
+    type: 2}
+  parentForObjects: {fileID: 4002990973566840}
+  pooledAmount: 10
+  willGrow: 1
+--- !u!114 &114918074638302572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1742371727404342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d11b2dfe80bf4ba0b78fa78bbc2a521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObject: {fileID: 1077370171032270, guid: efdb9ee94ffb64fda90dc9224fb51cd1,
+    type: 2}
+  parentForObjects: {fileID: 4530830298618790}
+  pooledAmount: 10
+  willGrow: 1
