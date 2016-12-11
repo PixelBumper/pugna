@@ -351,6 +351,7 @@ MonoBehaviour:
   jumpForce: 11
   input: _INPUT1
   shootCooldownSeconds: 0.3
+  kickCooldownSeconds: 0.7
   bulletCount: 3
   maxBullets: 5
   bulletsOnReload: 5

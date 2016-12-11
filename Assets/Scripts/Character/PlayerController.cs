@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
     public float shootCooldownSeconds = 1f;
     private float currentShootCooldownSeconds = 0f;
 
+    public float kickCooldownSeconds = 0.7f;
+    private float currentKickCooldownSeconds = 0f;
+
     private GenericPool bulletPool;
 
     public int bulletCount = 3;
@@ -43,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isStunned = false;
     private Team _team;
+    private GenericPool kickPool;
 
 
     // Use this for initialization
@@ -50,6 +54,7 @@ public class PlayerController : MonoBehaviour
 	{
 	    ourRigidBody = GetComponent<Rigidbody2D>();
 	    bulletPool = GameObject.FindGameObjectWithTag("BulletPool").GetComponent<GenericPool>();
+	    kickPool = GameObject.FindGameObjectWithTag("KickPool").GetComponent<GenericPool>();
 	    _team = GetComponent<Team>();
 	    SetCurrentHp(maxHp);
 	}
@@ -107,6 +112,11 @@ public class PlayerController : MonoBehaviour
             currentShootCooldownSeconds -= Time.deltaTime;
         }
 
+        if (currentKickCooldownSeconds > 0f)
+        {
+            currentKickCooldownSeconds -= Time.deltaTime;
+        }
+
         if (remainingLifeRegenerationCooldownInSeconds > 0f)
         {
             secondsSinceLastUnitGained = 0f;
@@ -142,9 +152,37 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        if (Math.Abs(Input.GetAxis("Fire1"+input)) > 0.001f || Input.GetButton("Fire1"+input))
+        if (Math.Abs(Input.GetAxis("Fire1" + input)) > 0.001f || Input.GetButton("Fire1" + input))
         {
             Shoot();
+        }
+        else if(Math.Abs(Input.GetAxis("Fire2" + input)) > 0.001f || Input.GetButton("Fire2" + input))
+        {
+            Kick();
+        }
+    }
+
+    private void Kick()
+    {
+        if (!isStunned && currentKickCooldownSeconds <= 0)
+        {
+            var pooledObject = kickPool.GetPooledObject();
+            if (pooledObject)
+            {
+                pooledObject.GetComponent<Kick>().SetShooter(gameObject);
+                currentKickCooldownSeconds = kickCooldownSeconds;
+                pooledObject.transform.position = transform.position;
+
+                if (!isFacingRight)
+                {
+                    pooledObject.transform.rotation = new Quaternion(0f, 0f, 1f, 0f);
+                }
+                else
+                {
+                    pooledObject.transform.rotation = new Quaternion(0f, 0f, 0f, 1f);
+                }
+                pooledObject.SetActive(true);
+            }
         }
     }
 
@@ -158,10 +196,11 @@ public class PlayerController : MonoBehaviour
                 var pooledObject = bulletPool.GetPooledObject();
                 if (pooledObject)
                 {
+                    pooledObject.GetComponent<Bullet>().SetShooter(gameObject);
                     currentShootCooldownSeconds = shootCooldownSeconds;
                     pooledObject.transform.position = transform.position;
 
-                    pooledObject.GetComponent<Bullet>().SetShooter(gameObject);
+
 
                     var spriteRenderer = pooledObject.GetComponent<SpriteRenderer>();
                     if (spriteRenderer)
