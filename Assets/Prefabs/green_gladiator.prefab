@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 114637974360492810}
   - component: {fileID: 114583745106511088}
   m_Layer: 8
-  m_Name: character2
+  m_Name: green_gladiator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -326,8 +326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1dc9910e9be4ad58479a28df3d3fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 1
-  teamColor: {r: 1, g: 0, b: 1, a: 1}
+  team: 2
+  teamColor: {r: 1, g: 1, b: 0, a: 1}
 --- !u!114 &114637974360492810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -347,7 +347,7 @@ MonoBehaviour:
   groundCheckBottomRight: {fileID: 4522729047602796}
   wallCheckTopLeft: {fileID: 4758924887720490}
   wallCheckBottomRight: {fileID: 4886963158233318}
-  anim: {fileID: 0}
+  anim: {fileID: 95111259516610700}
   jumpForce: 11
   input: _INPUT1
   shootCooldownSeconds: 0.3
