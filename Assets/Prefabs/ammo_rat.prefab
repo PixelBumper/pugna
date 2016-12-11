@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 70666935138256362}
   - component: {fileID: 50184056150462464}
   - component: {fileID: 114837310449941150}
+  - component: {fileID: 114627207402853258}
   m_Layer: 11
   m_Name: ammo_rat
   m_TagString: Untagged
@@ -95,6 +96,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114627207402853258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1724315561768658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e1dc9910e9be4ad58479a28df3d3fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: -1
+  teamColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114837310449941150
 MonoBehaviour:
   m_ObjectHideFlags: 1

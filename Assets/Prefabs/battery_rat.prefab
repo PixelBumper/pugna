@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 70475241194726594}
   - component: {fileID: 50114459489996854}
   - component: {fileID: 114708686099560340}
+  - component: {fileID: 114539286848165578}
   m_Layer: 11
   m_Name: battery_rat
   m_TagString: Untagged
@@ -95,6 +96,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114539286848165578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1077370171032270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e1dc9910e9be4ad58479a28df3d3fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: -1
+  teamColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114708686099560340
 MonoBehaviour:
   m_ObjectHideFlags: 1
