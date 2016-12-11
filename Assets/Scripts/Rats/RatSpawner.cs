@@ -71,4 +71,9 @@ public class RatSpawner : MonoBehaviour
         timeUntilNextSpawn=Random.Range((int)minTimeBetweenSpawns, (int)maxTimeBetweenSpawns);
 
     }
+
+    void RatDied()
+    {
+        ratCount--;
+    }
 }

@@ -19,6 +19,12 @@ public class Rat : MonoBehaviour
 
     private Rigidbody2D rigidbody2D;
 
+    private GenericPool ammoPool;
+
+    private GenericPool batteryPool;
+
+    private GameObject ratSpawner;
+
     public enum Items
     {
         Ammo,
@@ -38,6 +44,11 @@ public class Rat : MonoBehaviour
         collider = GetComponent<CapsuleCollider>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+
+        batteryPool=GameObject.Find("BatteryPool").GetComponent<GenericPool>();
+        ammoPool=GameObject.Find("AmmoPool").GetComponent<GenericPool>();
+
+        ratSpawner=GameObject.Find("RatSpawner");
         state = RatState.Falling;
     }
 
@@ -57,24 +68,6 @@ public class Rat : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
-    }
-
-    void OnTakeDamage()
-    {
-        GameObject go;
-        if (item == Items.Ammo)
-        {
-            go = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/ammo");
-        }
-        else
-        {
-            go = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/battery");
-        }
-
-        go.transform.position = transform.position;
-        go.SendMessage("Fling");
-
-        Destroy(gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -121,6 +114,29 @@ public class Rat : MonoBehaviour
     public void Destroy()
     {
         gameObject.SetActive(false);
+    }
+
+    public void ReceiveDamage(int damage)
+    {
+        GameObject go;
+        if (item == Items.Ammo)
+        {
+            go = ammoPool.GetPooledObject();
+        }
+        else
+        {
+            go = batteryPool.GetPooledObject();
+        }
+
+        go.transform.position = transform.position;
+        go.SetActive(true);
+        go.SendMessage("Fling");
+
+        state= RatState.Falling;
+
+        ratSpawner.SendMessage("RatDied");
+
+        Destroy();
     }
 
 }

@@ -374,8 +374,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chanceForBatteryRat: 0.3
   maximumRats: 5
-  minTimeBetweenSpawns: 1
-  maxTimeBetweenSpawns: 2
+  minTimeBetweenSpawns: 2
+  maxTimeBetweenSpawns: 5
   spawningPoints:
   - {fileID: 1843983724043794}
   - {fileID: 1400511869728256}
