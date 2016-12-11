@@ -161,6 +161,8 @@ public class PlayerController : MonoBehaviour
                     currentShootCooldownSeconds = shootCooldownSeconds;
                     pooledObject.transform.position = transform.position;
 
+                    pooledObject.GetComponent<Bullet>().SetShooter(gameObject);
+
                     var spriteRenderer = pooledObject.GetComponent<SpriteRenderer>();
                     if (spriteRenderer)
                     {

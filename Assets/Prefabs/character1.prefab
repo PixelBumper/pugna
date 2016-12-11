@@ -354,7 +354,7 @@ MonoBehaviour:
   bulletCount: 3
   maxBullets: 5
   bulletsOnReload: 5
-  maxHp: 4
+  maxHp: 2
   currentHp: 0
   lifeRegenerationPerSecond: 0.5
   lifeRegenerationCooldownInSeconds: 7
