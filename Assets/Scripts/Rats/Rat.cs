@@ -109,4 +109,18 @@ public class Rat : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke("Destroy");
+    }
+
+    public void Destroy()
+    {
+        gameObject.SetActive(false);
+    }
+
 }
