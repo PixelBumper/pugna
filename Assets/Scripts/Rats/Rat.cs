@@ -25,6 +25,8 @@ public class Rat : MonoBehaviour
 
     private GameObject ratSpawner;
 
+    private Animator _animator;
+
     public enum Items
     {
         Ammo,
@@ -35,7 +37,8 @@ public class Rat : MonoBehaviour
     {
         MovingLeft,
         MovingRight,
-        Falling
+        Falling,
+        Dead
     }
 
     // Use this for initialization
@@ -50,6 +53,8 @@ public class Rat : MonoBehaviour
 
         ratSpawner=GameObject.Find("RatSpawner");
         state = RatState.Falling;
+
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -64,6 +69,10 @@ public class Rat : MonoBehaviour
                 rigidbody2D.velocity=new Vector2(speed, 0);
                 break;
             case RatState.Falling:
+
+                break;
+            case RatState.Dead:
+                rigidbody2D.velocity=new Vector2(0,rigidbody2D.velocity.y);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -132,11 +141,14 @@ public class Rat : MonoBehaviour
         go.SetActive(true);
         go.SendMessage("Fling");
 
-        state= RatState.Falling;
+        _animator.SetTrigger("Died");
+        state= RatState.Dead;
 
         ratSpawner.SendMessage("RatDied");
 
-        Destroy();
+
+        Invoke("Destroy",3);
+
     }
 
 }
