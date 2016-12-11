@@ -28,7 +28,15 @@ public class PlayerController : MonoBehaviour
 
     private GenericPool bulletPool;
 
+    public int maxHp = 4;
+    public int currentHp;
 
+    private float secondsSinceLastUnitGained = 0f;
+    public float lifeRegenerationPerSecond = 0.5f;
+    public float lifeRegenerationCooldownInSeconds = 7f;
+    private float remainingLifeRegenerationCooldownInSeconds = 0f;
+
+    private bool isStunned = false;
 
 
     // Use this for initialization
@@ -36,6 +44,7 @@ public class PlayerController : MonoBehaviour
 	{
 	    ourRigidBody = GetComponent<Rigidbody2D>();
 	    bulletPool = GameObject.FindGameObjectWithTag("BulletPool").GetComponent<GenericPool>();
+	    currentHp = maxHp;
 	}
 	
 	// Update is called once per frame
@@ -48,10 +57,25 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsGrounded", isOnGround);
         }
 
-        bool isTouchingWall = Physics2D.OverlapArea(wallCheckTopLeft.position, wallCheckBottomRight.position, whatIsGround);
 
         // Movement!
         float move = Input.GetAxis("Horizontal" + input);
+
+        MoveBy(move);
+    }
+
+    public void MoveBy(float move)
+    {
+        if (isStunned)
+        {
+            if (anim != null)
+            {
+                anim.SetFloat("Speed", 0);
+            }
+            return;
+        }
+
+        bool isTouchingWall = Physics2D.OverlapArea(wallCheckTopLeft.position, wallCheckBottomRight.position, whatIsGround);
         if (anim != null)
         {
             anim.SetFloat("Speed", Mathf.Abs(move));
@@ -71,22 +95,57 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (isOnGround && Input.GetButton("Jump"+input))
-        {
-            isOnGround = false;
-            if (anim != null)
-            {
-                anim.SetBool("IsGrounded", isOnGround);
-            }
-            ourRigidBody.velocity = new Vector2(ourRigidBody.velocity.x, jumpForce);
-        }
-
         if (currentShootCooldownSeconds > 0f)
         {
             currentShootCooldownSeconds -= Time.deltaTime;
         }
 
-        if (currentShootCooldownSeconds <= 0f && (Math.Abs(Input.GetAxis("Fire1"+input)) > 0.001f || Input.GetButton("Fire1"+input)))
+        if (remainingLifeRegenerationCooldownInSeconds > 0f)
+        {
+            secondsSinceLastUnitGained = 0f;
+            remainingLifeRegenerationCooldownInSeconds -= Time.deltaTime;
+            if (remainingLifeRegenerationCooldownInSeconds <= 0f)
+            {
+                isStunned = false;
+                if (anim)
+                {
+                    anim.SetBool("IsStunned", isStunned);
+                }
+            }
+        }
+        else if (currentHp < maxHp)
+        {
+            secondsSinceLastUnitGained += Time.deltaTime;
+            int secondsPassed = (int) secondsSinceLastUnitGained;
+            if (secondsPassed * lifeRegenerationPerSecond > 1)
+            {
+                int hpGained = (int) (secondsPassed * lifeRegenerationPerSecond);
+                secondsSinceLastUnitGained -= hpGained;
+                SetCurrentHp(currentHp + hpGained);
+            }
+        }
+
+
+
+        ProcessMovement();
+    }
+
+    private void ProcessMovement()
+    {
+        if (Input.GetButton("Jump"+input))
+        {
+            Jump();
+        }
+
+        if (Math.Abs(Input.GetAxis("Fire1"+input)) > 0.001f || Input.GetButton("Fire1"+input))
+        {
+            Shoot();
+        }
+    }
+
+    public void Shoot()
+    {
+        if (!isStunned && currentShootCooldownSeconds <= 0f)
         {
             var pooledObject = bulletPool.GetPooledObject();
             if (pooledObject)
@@ -111,6 +170,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Jump()
+    {
+        if (!isStunned && isOnGround)
+        {
+            isOnGround = false;
+            if (anim != null)
+            {
+                anim.SetBool("IsGrounded", isOnGround);
+            }
+            ourRigidBody.velocity = new Vector2(ourRigidBody.velocity.x, jumpForce);
+        }
+    }
+
     void Flip()
     {
         isFacingRight = !isFacingRight;
@@ -131,6 +203,39 @@ public class PlayerController : MonoBehaviour
                 break;
             default:
                 throw new ArgumentOutOfRangeException("item", item, null);
+        }
+    }
+
+    public void ReceiveDamage(int damage)
+    {
+        if (!isStunned)
+        {
+            SetCurrentHp(currentHp - damage);
+            remainingLifeRegenerationCooldownInSeconds = lifeRegenerationCooldownInSeconds;
+        }
+    }
+
+    private void SetCurrentHp(int hpToSet)
+    {
+        currentHp = hpToSet;
+        if (currentHp <= 0)
+        {
+            currentHp = 0;
+            isStunned = true;
+            if (anim)
+            {
+                anim.SetBool("IsStunned", isStunned);
+            }
+        }
+
+        if (currentHp > 0)
+        {
+            isStunned = false;
+            if (anim)
+            {
+                anim.SetBool("IsStunned", isStunned);
+            }
+            currentHp = Math.Min(maxHp, currentHp);
         }
     }
 

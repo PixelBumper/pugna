@@ -33,7 +33,7 @@ public class GraphicalClock : MonoBehaviour
 	{
 	    // Uncomment the line below to be able to update the points on live
 	    // AddPoints(0);
-	    
+
 	    childTransform.rotation = Quaternion.Lerp(childTransform.rotation, _quaternion, Time.deltaTime * rotationSpeed);
 	}
 
