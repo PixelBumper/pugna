@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public float lifeRegenerationPerSecond = 0.5f;
     public float lifeRegenerationCooldownInSeconds = 7f;
     private float remainingLifeRegenerationCooldownInSeconds = 0f;
+    public CharacterLifeBar lifeBar;
 
     private bool isStunned = false;
 
@@ -106,7 +107,7 @@ public class PlayerController : MonoBehaviour
             remainingLifeRegenerationCooldownInSeconds -= Time.deltaTime;
             if (remainingLifeRegenerationCooldownInSeconds <= 0f)
             {
-                isStunned = false;
+                SetCurrentHp(currentHp + 1);
                 if (anim)
                 {
                     anim.SetBool("IsStunned", isStunned);
@@ -189,6 +190,13 @@ public class PlayerController : MonoBehaviour
         Vector3 currentScale = transform.localScale;
         currentScale.x *= -1;
         transform.localScale = currentScale;
+
+        if (lifeBar)
+        {
+            Vector3 lifeBarScale = lifeBar.gameObject.transform.localScale;
+            lifeBarScale.x *= -1;
+            lifeBar.gameObject.transform.localScale = lifeBarScale;
+        }
     }
 
     void CollectItem(Rat.Items item)
@@ -236,6 +244,11 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("IsStunned", isStunned);
             }
             currentHp = Math.Min(maxHp, currentHp);
+        }
+
+        if (lifeBar)
+        {
+            lifeBar.SetCurrentHp(currentHp / (float)maxHp);
         }
     }
 
