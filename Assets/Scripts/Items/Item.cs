@@ -29,6 +29,7 @@ public class Item : MonoBehaviour
         if ("Player".Equals(LayerMask.LayerToName(collision.gameObject.layer)))
         {
             collision.gameObject.SendMessage("CollectItem", item);
+            Destroy(gameObject);
         }
 
     }
