@@ -21,10 +21,16 @@ public class Item : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rigidbody.velocity.Equals(Vector2.zero))
+
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ("Player".Equals(LayerMask.LayerToName(collision.gameObject.layer)))
         {
-            rigidbody.bodyType=RigidbodyType2D.Kinematic;
+            collision.gameObject.SendMessage("CollectItem", item);
         }
+
     }
 
     public void Fling()
@@ -39,12 +45,6 @@ public class Item : MonoBehaviour
         }
     }
 
-//    public void OnCollisionEnter(Collision collision)
-//    {
-//        Debug.LogError("wtf");
-//        collision.gameObject.SendMessage("CollectItem", item);
-//    }
-//
 //    void OnTriggerEnter(Collider other)
 //    {
 //        Debug.LogError("wtf");
