@@ -26,11 +26,14 @@ public class PlayerController : MonoBehaviour
     public float shootCooldownSeconds = 1f;
     private float currentShootCooldownSeconds = 0f;
 
+    private GenericPool bulletPool;
+
 
     // Use this for initialization
 	void Start ()
 	{
 	    ourRigidBody = GetComponent<Rigidbody2D>();
+	    bulletPool = GameObject.FindGameObjectWithTag("BulletPool").GetComponent<GenericPool>();
 	}
 	
 	// Update is called once per frame
@@ -80,11 +83,29 @@ public class PlayerController : MonoBehaviour
         {
             currentShootCooldownSeconds -= Time.deltaTime;
         }
-        
+
         if (currentShootCooldownSeconds <= 0f && (Math.Abs(Input.GetAxis("Fire1"+input)) > 0.001f || Input.GetButton("Fire1"+input)))
         {
-            currentShootCooldownSeconds = shootCooldownSeconds;
-            Debug.Log("Bam!");
+            var pooledObject = bulletPool.GetPooledObject();
+            if (pooledObject)
+            {
+                currentShootCooldownSeconds = shootCooldownSeconds;
+                pooledObject.transform.position = transform.position;
+
+                if (Input.GetAxis("Vertical" + input) > 0)
+                {
+                    pooledObject.transform.rotation = new Quaternion(0f, 0f, 0.707f, 0.707f);
+                }
+                else if (!isFacingRight)
+                {
+                    pooledObject.transform.rotation = new Quaternion(0f, 0f, 1f, 0f);
+                }
+                else
+                {
+                    pooledObject.transform.rotation = new Quaternion(0f, 0f, 0f, 1f);
+                }
+                pooledObject.SetActive(true);
+            }
         }
 
     }
