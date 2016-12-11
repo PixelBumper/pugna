@@ -69,6 +69,7 @@ public class GraphicalClock : MonoBehaviour
             chronoText.text = "";
             chronoText.gameObject.SetActive(false);
             _victory_panel_future.SetActive(true);
+            Invoke("GoToMainMenu", 7);
 
         }
         else if (points < -maxPoints)
@@ -80,6 +81,7 @@ public class GraphicalClock : MonoBehaviour
             chronoText.text = "";
             chronoText.gameObject.SetActive(false);
             _victory_panel_past.SetActive(true);
+            Invoke("GoToMainMenu", 7);
         }
         points = Math.Min(maxPoints, Math.Max(-maxPoints, points));
         int currentBackgroundIndex = IndexForPoints(points);
@@ -139,5 +141,10 @@ public class GraphicalClock : MonoBehaviour
             return 1;
         }
         return 3;
+    }
+
+    void GoToMainMenu()
+    {
+        MainController.SwitchScene("StartMenu");
     }
 }
