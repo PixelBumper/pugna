@@ -54,7 +54,7 @@ public class Rat : MonoBehaviour
         go.transform.position = transform.position;
         go.SendMessage("Fling");
 
-        Destroy(this);
+        Destroy(gameObject);
 
     }
 

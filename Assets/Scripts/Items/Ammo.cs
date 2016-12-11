@@ -4,13 +4,4 @@ using UnityEngine;
 
 public class Ammo : Item {
 
-	// Use this for initialization
-	void Start () {
-		Fling();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
