@@ -19,13 +19,13 @@ public class GraphicalClock : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        _quaternion = transform.rotation;
     }
 
     // Use this for initialization
 	void Start ()
 	{
 	    childTransform = transform.GetChild(0);
+	    _quaternion = childTransform.rotation;
 	}
 	
 	// Update is called once per frame
