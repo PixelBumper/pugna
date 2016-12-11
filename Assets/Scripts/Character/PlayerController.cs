@@ -28,7 +28,9 @@ public class PlayerController : MonoBehaviour
 
     private GenericPool bulletPool;
 
-
+    public int bulletCount = 3;
+    public int maxBullets = 5;
+    public int bulletsOnReload = 5;
 
 
     // Use this for initialization
@@ -88,25 +90,29 @@ public class PlayerController : MonoBehaviour
 
         if (currentShootCooldownSeconds <= 0f && (Math.Abs(Input.GetAxis("Fire1"+input)) > 0.001f || Input.GetButton("Fire1"+input)))
         {
-            var pooledObject = bulletPool.GetPooledObject();
-            if (pooledObject)
+            if (bulletCount > 0)
             {
-                currentShootCooldownSeconds = shootCooldownSeconds;
-                pooledObject.transform.position = transform.position;
+                bulletCount--;
+                var pooledObject = bulletPool.GetPooledObject();
+                if (pooledObject)
+                {
+                    currentShootCooldownSeconds = shootCooldownSeconds;
+                    pooledObject.transform.position = transform.position;
 
-                if (Input.GetAxis("Vertical" + input) > 0)
-                {
-                    pooledObject.transform.rotation = new Quaternion(0f, 0f, 0.707f, 0.707f);
+                    if (Input.GetAxis("Vertical" + input) > 0)
+                    {
+                        pooledObject.transform.rotation = new Quaternion(0f, 0f, 0.707f, 0.707f);
+                    }
+                    else if (!isFacingRight)
+                    {
+                        pooledObject.transform.rotation = new Quaternion(0f, 0f, 1f, 0f);
+                    }
+                    else
+                    {
+                        pooledObject.transform.rotation = new Quaternion(0f, 0f, 0f, 1f);
+                    }
+                    pooledObject.SetActive(true);
                 }
-                else if (!isFacingRight)
-                {
-                    pooledObject.transform.rotation = new Quaternion(0f, 0f, 1f, 0f);
-                }
-                else
-                {
-                    pooledObject.transform.rotation = new Quaternion(0f, 0f, 0f, 1f);
-                }
-                pooledObject.SetActive(true);
             }
         }
     }
@@ -124,7 +130,7 @@ public class PlayerController : MonoBehaviour
         switch (item)
         {
             case Rat.Items.Ammo:
-                throw new NotImplementedException("charakter cannot handle ammo yet");
+                bulletCount = bulletsOnReload;
                 break;
             case Rat.Items.Battery:
                 throw new NotImplementedException("charakter cannot handle battery yet");
@@ -134,8 +140,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        Debug.LogError("u suck");
-    }
 }
