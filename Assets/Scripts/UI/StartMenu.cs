@@ -58,7 +58,6 @@ public class StartMenu : MonoBehaviour
 
     void ShowTutorial()
     {
-        Debug.LogError("Show");
         showingTutorial = true;
         canvas.SetActive(false);
         tutorial.SetActive(true);
@@ -68,7 +67,6 @@ public class StartMenu : MonoBehaviour
 
     void HideTutorial()
     {
-        Debug.LogError("Hide");
         tutorial.SetActive(false);
         canvas.SetActive(true);
         showingTutorial = false;
