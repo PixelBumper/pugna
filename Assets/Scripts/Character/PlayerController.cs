@@ -223,7 +223,7 @@ public class PlayerController : MonoBehaviour
                 bulletCount = bulletsOnReload;
                 break;
             case Rat.Items.Battery:
-                throw new NotImplementedException("charakter cannot handle battery yet");
+                GraphicalClock.instance.AddPoints(_team.batteryValue);
                 break;
             default:
                 throw new ArgumentOutOfRangeException("item", item, null);
