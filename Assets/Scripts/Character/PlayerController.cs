@@ -83,4 +83,23 @@ public class PlayerController : MonoBehaviour
         transform.localScale = currentScale;
     }
 
+    void CollectItem(Rat.Items item)
+    {
+        switch (item)
+        {
+            case Rat.Items.Ammo:
+                throw new NotImplementedException("charakter cannot handle ammo yet");
+                break;
+            case Rat.Items.Battery:
+                throw new NotImplementedException("charakter cannot handle battery yet");
+                break;
+            default:
+                throw new ArgumentOutOfRangeException("item", item, null);
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        Debug.LogError("u suck");
+    }
 }
