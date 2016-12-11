@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: 0
-  speed: 1
+  speed: 3
   state: 0
 --- !u!212 &212724363182985386
 SpriteRenderer:

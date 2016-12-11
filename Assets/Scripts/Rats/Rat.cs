@@ -15,6 +15,10 @@ public class Rat : MonoBehaviour
 
     public RatState state;
 
+    private SpriteRenderer spriteRenderer;
+
+    private Rigidbody2D rigidbody2D;
+
     public enum Items
     {
         Ammo,
@@ -32,6 +36,8 @@ public class Rat : MonoBehaviour
     void Start()
     {
         collider = GetComponent<CapsuleCollider>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
         state = RatState.Falling;
     }
 
@@ -41,10 +47,10 @@ public class Rat : MonoBehaviour
         switch (state)
         {
             case RatState.MovingLeft:
-                GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);
+                rigidbody2D.velocity=new Vector2(-speed, 0);
                 break;
             case RatState.MovingRight:
-                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
+                rigidbody2D.velocity=new Vector2(speed, 0);
                 break;
             case RatState.Falling:
                 break;
@@ -80,10 +86,12 @@ public class Rat : MonoBehaviour
             if (Random.value > 0.5)
             {
                 state = RatState.MovingLeft;
+                spriteRenderer.flipX = false;
             }
             else
             {
                 state = RatState.MovingRight;
+                spriteRenderer.flipX = true;
             }
         }
         if ("Border".Equals(layerName))
@@ -91,11 +99,12 @@ public class Rat : MonoBehaviour
             if (state == RatState.MovingLeft)
             {
                 state = RatState.MovingRight;
+                spriteRenderer.flipX = true;
             }
             else
             {
                 state = RatState.MovingLeft;
-
+                spriteRenderer.flipX = false;
             }
         }
     }
