@@ -57,7 +57,6 @@ public class RatSpawner : MonoBehaviour
 	            rat.transform.position = spawningPoints[Random.Range(0, spawningPoints.Count - 1)].transform.position;
 	            rat.SetActive(true);
 
-	            Debug.LogError(rat);
 	            ratCount++;
 	        }
 
