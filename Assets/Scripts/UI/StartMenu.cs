@@ -10,10 +10,9 @@ public class StartMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-	    EventSystem.current.SetSelectedGameObject(GameObject.Find("1 vs 1 button"));
+	    EventSystem.current.SetSelectedGameObject(GameObject.Find("play"));
+	    GameObject.Find("play").GetComponent<Button>().onClick.AddListener(()=>StartGame());
 	    GameObject.Find("tutorial").GetComponent<Button>().onClick.AddListener(()=>ShowTutorial());
-	    GameObject.Find("1 vs 1 button").GetComponent<Button>().onClick.AddListener(()=>LoadCharacterSelection());
-	    GameObject.Find("2 vs 2 button").GetComponent<Button>().onClick.AddListener(()=>ShowTutorial());
 	    GameObject.Find("exit").GetComponent<Button>().onClick.AddListener(()=>Exit());
 	}
 
@@ -30,9 +29,9 @@ public class StartMenu : MonoBehaviour {
 	    }
 	}
 
-    void LoadCharacterSelection()
+    void StartGame()
     {
-        MainController.SwitchScene("CharacterSelection");
+        MainController.SwitchScene("DefaultScene");
     }
 
     void ShowTutorial()
