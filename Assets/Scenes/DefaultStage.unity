@@ -880,7 +880,7 @@ Prefab:
     - target: {fileID: 114637974360492810, guid: 46aed4cb571744b07b7e5ebfe0ba013e,
         type: 2}
       propertyPath: input
-      value: _INPUT2
+      value: _INPUT1
       objectReference: {fileID: 0}
     - target: {fileID: 114583745106511088, guid: 46aed4cb571744b07b7e5ebfe0ba013e,
         type: 2}
@@ -2007,11 +2007,6 @@ Prefab:
     - target: {fileID: 4144484645701008, guid: 46aed4cb571744b07b7e5ebfe0ba013e, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114583745106511088, guid: 46aed4cb571744b07b7e5ebfe0ba013e,
-        type: 2}
-      propertyPath: teamColor.b
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46aed4cb571744b07b7e5ebfe0ba013e, type: 2}
