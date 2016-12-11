@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
         {
             if (anim != null)
             {
-                anim.SetFloat("Speed", 0);
+                anim.SetFloat("MovingSpeed", 0);
             }
             return;
         }
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
         bool isTouchingWall = Physics2D.OverlapArea(wallCheckTopLeft.position, wallCheckBottomRight.position, whatIsGround);
         if (anim != null)
         {
-            anim.SetFloat("Speed", Mathf.Abs(move));
+            anim.SetFloat("MovingSpeed", Mathf.Abs(move));
         }
 
         ourRigidBody.velocity = isTouchingWall ? new Vector2(0, ourRigidBody.velocity.y) : new Vector2(move * maxSpeed, ourRigidBody.velocity.y);
@@ -273,6 +273,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!isStunned)
         {
+            if (anim != null)
+            {
+                anim.SetTrigger("IsHit");
+            }
+
             SetCurrentHp(currentHp - damage);
             remainingLifeRegenerationCooldownInSeconds = lifeRegenerationCooldownInSeconds;
         }
