@@ -169,6 +169,12 @@ public class PlayerController : MonoBehaviour
             var pooledObject = kickPool.GetPooledObject();
             if (pooledObject)
             {
+
+                if (anim != null)
+                {
+                    anim.SetTrigger("Kick");
+                }
+
                 pooledObject.GetComponent<Kick>().SetShooter(gameObject);
                 currentKickCooldownSeconds = kickCooldownSeconds;
                 pooledObject.transform.position = transform.position;
@@ -210,20 +216,54 @@ public class PlayerController : MonoBehaviour
 
                     if (Input.GetAxis("Vertical" + input) > 0)
                     {
+                        if (anim != null)
+                        {
+                            anim.SetTrigger("ShotUp");
+                        }
                         pooledObject.transform.rotation = new Quaternion(0f, 0f, 0.707f, 0.707f);
                     }
                     else if (!isFacingRight)
                     {
+                        if (anim != null)
+                        {
+                            anim.SetTrigger("Shot");
+                        }
                         pooledObject.transform.rotation = new Quaternion(0f, 0f, 1f, 0f);
                     }
                     else
                     {
+                        if (anim != null)
+                        {
+                            anim.SetTrigger("Shot");
+                        }
                         pooledObject.transform.rotation = new Quaternion(0f, 0f, 0f, 1f);
                     }
                     pooledObject.SetActive(true);
                 }
             }
         }
+    }
+
+    public void Won()
+    {
+        if (anim != null)
+        {
+            anim.SetTrigger("Won");
+        }
+
+        isStunned = true;
+        remainingLifeRegenerationCooldownInSeconds = 300;
+    }
+
+    public void Lost()
+    {
+        if (anim != null)
+        {
+            anim.SetTrigger("Lost");
+        }
+
+        isStunned = true;
+        remainingLifeRegenerationCooldownInSeconds = 300;
     }
 
     public void Jump()
@@ -275,7 +315,7 @@ public class PlayerController : MonoBehaviour
         {
             if (anim != null)
             {
-                anim.SetTrigger("IsHit");
+                anim.SetTrigger("GotHit");
             }
 
             SetCurrentHp(currentHp - damage);
