@@ -349,7 +349,7 @@ MonoBehaviour:
   wallCheckBottomRight: {fileID: 4886963158233318}
   anim: {fileID: 95111259516610700}
   jumpForce: 11
-  input: _INPUT1
+  input: _INPUT2
   shootCooldownSeconds: 0.3
   kickCooldownSeconds: 0.7
   bulletCount: 3
