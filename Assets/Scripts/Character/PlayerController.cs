@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 	{
 	    ourRigidBody = GetComponent<Rigidbody2D>();
 	    bulletPool = GameObject.FindGameObjectWithTag("BulletPool").GetComponent<GenericPool>();
-	    currentHp = maxHp;
+	    SetCurrentHp(maxHp);
 	}
 	
 	// Update is called once per frame
