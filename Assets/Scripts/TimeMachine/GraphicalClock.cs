@@ -16,6 +16,13 @@ public class GraphicalClock : MonoBehaviour
     private Quaternion _quaternion;
     private BackgroundChanger _backgroundChanger;
 
+    private GameObject _futureGuy;
+    private GameObject _pastGuy;
+    private GameObject _ratSpawner;
+
+    private GameObject _victory_panel_past;
+    private GameObject _victory_panel_future;
+
     private void Awake()
     {
         instance = this;
@@ -24,9 +31,17 @@ public class GraphicalClock : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         _backgroundChanger = GameObject.FindGameObjectWithTag("BackgroundChanger").GetComponent<BackgroundChanger>();
         childTransform = transform.GetChild(0);
         _quaternion = childTransform.rotation;
+        _futureGuy = GameObject.Find("futuristic_pink");
+        _pastGuy = GameObject.Find("green_gladiator");
+        _ratSpawner = GameObject.Find("RatSpawner");
+        _victory_panel_future = GameObject.Find("victory_panel_future");
+        _victory_panel_future.SetActive(false);
+        _victory_panel_past = GameObject.Find("victory_panel_past");
+        _victory_panel_past.SetActive(false);
     }
 
     // Update is called once per frame
@@ -47,10 +62,16 @@ public class GraphicalClock : MonoBehaviour
         if (points > maxPoints)
         {
             // One team has won!
+            _futureGuy.SendMessage("Won");
+            _pastGuy.SendMessage("Lost");
+            _ratSpawner.SendMessage("GameOver");
         }
         else if (points < -maxPoints)
         {
             // The other team has won!
+            _futureGuy.SendMessage("Lost");
+            _pastGuy.SendMessage("Won");
+            _ratSpawner.SendMessage("GameOver");
         }
         points = Math.Min(maxPoints, Math.Max(-maxPoints, points));
         int currentBackgroundIndex = IndexForPoints(points);
