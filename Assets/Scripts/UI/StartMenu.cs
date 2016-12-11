@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,6 +14,8 @@ public class StartMenu : MonoBehaviour
     public GameObject canvas;
 
     public bool showingTutorial;
+
+    private bool initialPress = false;
 
 	// Use this for initialization
 	void Start ()
@@ -34,9 +37,16 @@ public class StartMenu : MonoBehaviour
 
     // Update is called once per frame
 	void Update () {
-	    if (showingTutorial && Input.anyKeyDown)
+	    if (showingTutorial && Input.GetButtonUp("Submit"))
 	    {
-	        HideTutorial();
+	        if (initialPress)
+	        {
+	            HideTutorial();
+	        }
+	        else
+	        {
+	            initialPress = true;
+	        }
 	    }
 
 	}
@@ -48,15 +58,20 @@ public class StartMenu : MonoBehaviour
 
     void ShowTutorial()
     {
+        Debug.LogError("Show");
         showingTutorial = true;
         canvas.SetActive(false);
         tutorial.SetActive(true);
+        initialPress = false;
+
     }
 
     void HideTutorial()
     {
+        Debug.LogError("Hide");
         tutorial.SetActive(false);
         canvas.SetActive(true);
         showingTutorial = false;
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("play"));
     }
 }
