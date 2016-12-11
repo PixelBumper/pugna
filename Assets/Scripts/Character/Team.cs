@@ -10,6 +10,11 @@ public class Team : MonoBehaviour
     public int team = 1;
     public Color teamColor = Color.red;
 
+    public int batteryValue
+    {
+        get { return team == 1 ? 1 : -1; }
+    }
+
     public static bool IsSameTeam(GameObject first, GameObject second)
     {
         var firstTeamComponent = first.GetComponent<Team>();
