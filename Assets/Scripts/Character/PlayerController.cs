@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Team))]
 public class PlayerController : MonoBehaviour
 {
     public float maxSpeed = 10;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
     public CharacterLifeBar lifeBar;
 
     private bool isStunned = false;
+    private Team _team;
 
 
     // Use this for initialization
@@ -48,6 +50,7 @@ public class PlayerController : MonoBehaviour
 	{
 	    ourRigidBody = GetComponent<Rigidbody2D>();
 	    bulletPool = GameObject.FindGameObjectWithTag("BulletPool").GetComponent<GenericPool>();
+	    _team = GetComponent<Team>();
 	    SetCurrentHp(maxHp);
 	}
 	
@@ -157,6 +160,12 @@ public class PlayerController : MonoBehaviour
                 {
                     currentShootCooldownSeconds = shootCooldownSeconds;
                     pooledObject.transform.position = transform.position;
+
+                    var spriteRenderer = pooledObject.GetComponent<SpriteRenderer>();
+                    if (spriteRenderer)
+                    {
+                        spriteRenderer.material.SetColor("_Color", _team.teamColor);
+                    }
 
                     if (Input.GetAxis("Vertical" + input) > 0)
                     {
