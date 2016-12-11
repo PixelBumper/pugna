@@ -80,8 +80,6 @@ public class RatSpawner : MonoBehaviour
 
     public void GameOver()
     {
-
-        Debug.LogError("wtf");
         ratCount = Int32.MaxValue;
         foreach (var rat in GameObject.FindGameObjectsWithTag("rat"))
         {

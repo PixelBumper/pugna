@@ -228,7 +228,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1624270017
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 78bc18dec2eb646ae85497ac080b5140, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb4d3ba800e554f07a64e077d4f53507, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2581,7 +2581,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1624270017
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 78bc18dec2eb646ae85497ac080b5140, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c8f3d44111c0470aacc5426a2b3675c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2945,6 +2945,8 @@ MonoBehaviour:
   maxPoints: 3
   rotationSpeed: 1.5
   chronoText: {fileID: 1107302186}
+  _victory_panel_past: {fileID: 1159993638}
+  _victory_panel_future: {fileID: 45954169}
 --- !u!1 &1464411694
 GameObject:
   m_ObjectHideFlags: 0

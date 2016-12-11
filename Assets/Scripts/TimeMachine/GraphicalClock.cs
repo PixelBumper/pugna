@@ -22,8 +22,8 @@ public class GraphicalClock : MonoBehaviour
     private GameObject _pastGuy;
     private GameObject _ratSpawner;
 
-    private GameObject _victory_panel_past;
-    private GameObject _victory_panel_future;
+    public GameObject _victory_panel_past;
+    public GameObject _victory_panel_future;
 
     private void Awake()
     {
@@ -41,9 +41,7 @@ public class GraphicalClock : MonoBehaviour
         _futureGuy = GameObject.Find("futuristic_pink");
         _pastGuy = GameObject.Find("green_gladiator");
         _ratSpawner = GameObject.Find("RatSpawner");
-        _victory_panel_future = GameObject.Find("victory_panel_future");
         _victory_panel_future.SetActive(false);
-        _victory_panel_past = GameObject.Find("victory_panel_past");
         _victory_panel_past.SetActive(false);
     }
 
@@ -64,17 +62,24 @@ public class GraphicalClock : MonoBehaviour
 
         if (points > maxPoints)
         {
-            // One team has won!
+            // Future team has won!
             _futureGuy.SendMessage("Won");
             _pastGuy.SendMessage("Lost");
             _ratSpawner.SendMessage("GameOver");
+            chronoText.text = "";
+            chronoText.gameObject.SetActive(false);
+            _victory_panel_future.SetActive(true);
+
         }
         else if (points < -maxPoints)
         {
-            // The other team has won!
+            // Past team has won!
             _futureGuy.SendMessage("Lost");
             _pastGuy.SendMessage("Won");
             _ratSpawner.SendMessage("GameOver");
+            chronoText.text = "";
+            chronoText.gameObject.SetActive(false);
+            _victory_panel_past.SetActive(true);
         }
         points = Math.Min(maxPoints, Math.Max(-maxPoints, points));
         int currentBackgroundIndex = IndexForPoints(points);
