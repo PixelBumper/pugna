@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     private GenericPool bulletPool;
 
+    
+
 
     // Use this for initialization
 	void Start ()
@@ -107,7 +109,6 @@ public class PlayerController : MonoBehaviour
                 pooledObject.SetActive(true);
             }
         }
-
     }
 
     void Flip()

@@ -42,3 +42,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackgroundEra
+    uniqueID: 1993543623
+    locked: 0
+  - name: TimeMachine
+    uniqueID: 3486159215
+    locked: 0
+  - name: Clock
+    uniqueID: 725984897
+    locked: 0
+  - name: Playable
+    uniqueID: 2670697279
+    locked: 0
+  - name: UI
+    uniqueID: 469226479
+    locked: 0
