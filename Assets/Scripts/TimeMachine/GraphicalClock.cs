@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GraphicalClock : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GraphicalClock : MonoBehaviour
     public int points = 0;
     public int maxPoints = 3;
     public float rotationSpeed = 1.0f;
+    public Text chronoText;
 
     private Transform childTransform;
 
@@ -27,6 +29,7 @@ public class GraphicalClock : MonoBehaviour
         _backgroundChanger = GameObject.FindGameObjectWithTag("BackgroundChanger").GetComponent<BackgroundChanger>();
         childTransform = transform.GetChild(0);
         _quaternion = childTransform.rotation;
+        AddPoints(0);
     }
 
     // Update is called once per frame
@@ -64,7 +67,31 @@ public class GraphicalClock : MonoBehaviour
         {
             _backgroundChanger.SetIndex(currentBackgroundIndex);
         }
+        SetChronoText(currentBackgroundIndex);
     }
+
+    private void SetChronoText(int currentBackgroundIndex)
+    {
+        switch (currentBackgroundIndex)
+        {
+            case 0:
+                chronoText.text = "90";
+                break;
+            case 1:
+                chronoText.text = "1312";
+                break;
+            case 2:
+                chronoText.text = "2016";
+                break;
+            case 3:
+                chronoText.text = "2675";
+                break;
+            case 4:
+                chronoText.text = "3205";
+                break;
+        }
+    }
+
 
     private int IndexForPoints(int currentPoints)
     {
