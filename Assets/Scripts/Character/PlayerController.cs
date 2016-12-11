@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private GenericPool bulletPool;
 
-    
+
 
 
     // Use this for initialization
