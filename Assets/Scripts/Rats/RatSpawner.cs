@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RatSpawner : MonoBehaviour
 {
@@ -75,4 +77,18 @@ public class RatSpawner : MonoBehaviour
     {
         ratCount--;
     }
+
+    public void GameOver()
+    {
+
+        Debug.LogError("wtf");
+        ratCount = Int32.MaxValue;
+        foreach (var rat in GameObject.FindGameObjectsWithTag("rat"))
+        {
+            rat.SendMessage("ReceiveDamage", 1);
+        }
+
+    }
+
+
 }
