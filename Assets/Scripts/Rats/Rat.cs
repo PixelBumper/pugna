@@ -123,32 +123,38 @@ public class Rat : MonoBehaviour
     public void Destroy()
     {
         gameObject.SetActive(false);
+        state=RatState.Falling;
     }
 
     public void ReceiveDamage(int damage)
     {
-        GameObject go;
-        if (item == Items.Ammo)
+        if (state != RatState.Dead)
         {
-            go = ammoPool.GetPooledObject();
+            GameObject go;
+            if (item == Items.Ammo)
+            {
+                go = ammoPool.GetPooledObject();
+            }
+            else
+            {
+                go = batteryPool.GetPooledObject();
+            }
+
+            go.transform.position = transform.position;
+            go.SetActive(true);
+            go.SendMessage("Fling");
+
+            _animator.SetTrigger("Died");
+            state = RatState.Dead;
+
+            ratSpawner.SendMessage("RatDied");
+
+
+            Invoke("Destroy", 3);
         }
-        else
-        {
-            go = batteryPool.GetPooledObject();
-        }
-
-        go.transform.position = transform.position;
-        go.SetActive(true);
-        go.SendMessage("Fling");
-
-        _animator.SetTrigger("Died");
-        state= RatState.Dead;
-
-        ratSpawner.SendMessage("RatDied");
-
-
-        Invoke("Destroy",3);
 
     }
+
+
 
 }

@@ -23,15 +23,12 @@ public class StartMenu : MonoBehaviour {
 
     // Update is called once per frame
 	void Update () {
-	    if (UnityEngine.Input.GetButtonUp("Fire1"))
-	    {
 
-	    }
 	}
 
     void StartGame()
     {
-        MainController.SwitchScene("DefaultScene");
+        MainController.SwitchScene("DefaultStage");
     }
 
     void ShowTutorial()
