@@ -5,11 +5,22 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class StartMenu : MonoBehaviour {
+public class StartMenu : MonoBehaviour
+{
+
+    public GameObject tutorial;
+
+    public GameObject canvas;
+
+    public bool showingTutorial;
 
 	// Use this for initialization
 	void Start ()
 	{
+	    canvas = GameObject.Find("Canvas");
+	    tutorial = GameObject.Find("TutorialScreen");
+	    showingTutorial = false;
+	    tutorial.SetActive(false);
 	    EventSystem.current.SetSelectedGameObject(GameObject.Find("play"));
 	    GameObject.Find("play").GetComponent<Button>().onClick.AddListener(()=>StartGame());
 	    GameObject.Find("tutorial").GetComponent<Button>().onClick.AddListener(()=>ShowTutorial());
@@ -23,6 +34,10 @@ public class StartMenu : MonoBehaviour {
 
     // Update is called once per frame
 	void Update () {
+	    if (showingTutorial && Input.anyKeyDown)
+	    {
+	        HideTutorial();
+	    }
 
 	}
 
@@ -33,6 +48,15 @@ public class StartMenu : MonoBehaviour {
 
     void ShowTutorial()
     {
-        throw new NotImplementedException();
+        showingTutorial = true;
+        canvas.SetActive(false);
+        tutorial.SetActive(true);
+    }
+
+    void HideTutorial()
+    {
+        tutorial.SetActive(false);
+        canvas.SetActive(true);
+        showingTutorial = false;
     }
 }
