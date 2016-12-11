@@ -44,3 +44,7 @@ Uses Unity 5.5.0f3
  - Sound is completely missing (time!)
  - Rats should damage you when they hit you
  - Amount of bullets left is not shown
+
+  # Binaries for Download
+ - [OSX](ReleaseVersion/pugna_1.0.0.zip)
+ - Windows (hopefully soon)
