@@ -11,7 +11,6 @@ public class GraphicalClock : MonoBehaviour
     public int points = 0;
     public int maxPoints = 3;
     public float rotationSpeed = 1.0f;
-    public Text chronoText;
 
     private Transform childTransform;
 
@@ -24,6 +23,9 @@ public class GraphicalClock : MonoBehaviour
 
     public GameObject _victory_panel_past;
     public GameObject _victory_panel_future;
+
+    public SpriteRenderer _time_panel;
+    public Sprite[] _time_panel_sprites;
 
     private void Awake()
     {
@@ -66,8 +68,6 @@ public class GraphicalClock : MonoBehaviour
             _futureGuy.SendMessage("Won");
             _pastGuy.SendMessage("Lost");
             _ratSpawner.SendMessage("GameOver");
-            chronoText.text = "";
-            chronoText.gameObject.SetActive(false);
             _victory_panel_future.SetActive(true);
             Invoke("GoToMainMenu", 7);
 
@@ -78,8 +78,6 @@ public class GraphicalClock : MonoBehaviour
             _futureGuy.SendMessage("Lost");
             _pastGuy.SendMessage("Won");
             _ratSpawner.SendMessage("GameOver");
-            chronoText.text = "";
-            chronoText.gameObject.SetActive(false);
             _victory_panel_past.SetActive(true);
             Invoke("GoToMainMenu", 7);
         }
@@ -100,24 +98,7 @@ public class GraphicalClock : MonoBehaviour
 
     private void SetChronoText(int currentBackgroundIndex)
     {
-        switch (currentBackgroundIndex)
-        {
-            case 0:
-                chronoText.text = "90";
-                break;
-            case 1:
-                chronoText.text = "1312";
-                break;
-            case 2:
-                chronoText.text = "2016";
-                break;
-            case 3:
-                chronoText.text = "2675";
-                break;
-            case 4:
-                chronoText.text = "3205";
-                break;
-        }
+        _time_panel.sprite = _time_panel_sprites[currentBackgroundIndex];
     }
 
 
