@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     private GenericPool bulletPool;
 
     public int bulletCount = 3;
-    public int maxBullets = 5;
+    public GameObject[] bullets;
     public int bulletsOnReload = 5;
     public int maxHp = 4;
     public int currentHp;
@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
 	    kickPool = GameObject.FindGameObjectWithTag("KickPool").GetComponent<GenericPool>();
 	    _team = GetComponent<Team>();
 	    SetCurrentHp(maxHp);
+	    ChangeBulletCountTo(bulletCount);
 	}
 	
 	// Update is called once per frame
@@ -198,7 +199,8 @@ public class PlayerController : MonoBehaviour
         {
             if (bulletCount > 0)
             {
-                bulletCount--;
+                ChangeBulletCountTo(bulletCount - 1);
+
                 var pooledObject = bulletPool.GetPooledObject();
                 if (pooledObject)
                 {
@@ -241,6 +243,15 @@ public class PlayerController : MonoBehaviour
                     pooledObject.SetActive(true);
                 }
             }
+        }
+    }
+
+    private void ChangeBulletCountTo(int newBulletCount)
+    {
+        bulletCount = Math.Max(0, Math.Min(newBulletCount, bullets.Length));
+        for (int i = 0; i < bullets.Length; i++)
+        {
+            bullets[i].SetActive(i<bulletCount);
         }
     }
 
@@ -299,7 +310,7 @@ public class PlayerController : MonoBehaviour
         switch (item)
         {
             case Rat.Items.Ammo:
-                bulletCount = bulletsOnReload;
+                ChangeBulletCountTo(bulletCount + bulletsOnReload);
                 break;
             case Rat.Items.Battery:
                 GraphicalClock.instance.AddPoints(_team.batteryValue);
