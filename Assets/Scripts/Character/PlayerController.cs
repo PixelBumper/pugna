@@ -72,9 +72,8 @@ public class PlayerController : MonoBehaviour
 
 
         // Movement!
-        float move = Input.GetAxis("Horizontal" + input);
-
-        MoveBy(move);
+        float move = Input.GetAxisRaw("Horizontal" + input);
+        MoveBy(Math.Abs(move) > 0.25 ? move : 0f);
     }
 
     public void MoveBy(float move)
@@ -93,6 +92,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetFloat("MovingSpeed", Mathf.Abs(move));
         }
+
 
         ourRigidBody.velocity = isTouchingWall ? new Vector2(0, ourRigidBody.velocity.y) : new Vector2(move * maxSpeed, ourRigidBody.velocity.y);
 
@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
 
     private void ProcessMovement()
     {
-        if (Input.GetButton("Jump"+input))
+        if (Input.GetButton("Jump" + input))
         {
             Jump();
         }
