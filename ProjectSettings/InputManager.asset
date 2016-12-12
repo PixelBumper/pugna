@@ -9,8 +9,8 @@ InputManager:
     m_Name: Horizontal_INPUT1
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
+    negativeButton: 
+    positiveButton: 
     altNegativeButton: a
     altPositiveButton: d
     gravity: 3
@@ -25,8 +25,8 @@ InputManager:
     m_Name: Vertical_INPUT1
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: down
-    positiveButton: up
+    negativeButton: 
+    positiveButton: 
     altNegativeButton: s
     altPositiveButton: w
     gravity: 3
@@ -42,7 +42,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: c
+    positiveButton: g
     altNegativeButton: 
     altPositiveButton: mouse 0
     gravity: 1000
@@ -58,7 +58,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: f
+    positiveButton: h
     altNegativeButton: 
     altPositiveButton: mouse 1
     gravity: 1000
@@ -297,8 +297,8 @@ InputManager:
     m_Name: Horizontal_INPUT2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: h
-    positiveButton: k
+    negativeButton: left
+    positiveButton: right
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -313,8 +313,8 @@ InputManager:
     m_Name: Vertical_INPUT2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: j
-    positiveButton: k
+    negativeButton: up
+    positiveButton: down
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -330,7 +330,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: l
+    positiveButton: right shift
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -362,7 +362,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: m
+    positiveButton: right ctrl
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
