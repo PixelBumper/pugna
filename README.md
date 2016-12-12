@@ -14,15 +14,15 @@ Default controls:
 
 Player 1
  - w,a,s,d to move
- - c to shoot
- - f to kick
+ - g to shoot
+ - h to kick
  - space to jump
 
 Player 2
- - u, h, j, k to move 
- - l to shoot
+ - up, left, down, right arrow keys to move 
+ - right shift to shoot
  - p to kick
- - m to jump
+ - right ctrl to jump
 
  ![tutorial](Screenshots/tutorial.png "Tutorial control")
  
