@@ -1,25 +1,32 @@
 # Chrono Pugna
-Ludum Dare 37 game entry. Local multiplayer 2D game for 2 to 4 players.
+[Ludum Dare 37 game entry](http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=125037). Local multiplayer 2D game for 2 to 4 players.
 Theme: One Room
 
 Time travellers find themselves inside a time machine and they want to get back home. Unfortunately they come from opposite times and the machine can only hold one teleport! Fight against the other team in order to go back to your time.
 
 Pick up batteries being carried by rats that live inside the machinery before the other team in order to travel to your time.
 
+![game1](Screenshots/in_game_future.png "Traveling to the future")
+![game2](Screenshots/in_game_past.png "Traveling to the past")
+
 ## Controls
-Defailt controls:
+Default controls:
+
 Player 1
  - w,a,s,d to move
  - c to shoot
  - f to kick
  - space to jump
+
 Player 2
  - u, h, j, k to move 
  - l to shoot
  - p to kick
  - m to jump
+
+ ![tutorial](Screenshots/tutorial.png "Tutorial control")
  
-Note
+** Note **
  - Controllers are supported, but need to be configured before the game
  - Players have 3 bullets each, powerups can be picked to shoot more
 
@@ -37,3 +44,8 @@ Uses Unity 5.5.0f3
  - Sound is completely missing (time!)
  - Rats should damage you when they hit you
  - Amount of bullets left is not shown
+
+  # Binaries for Download
+ - [OSX](ReleaseVersion/pugna_1.0.0.zip)
+ - [WebGL](https://pixelbumper.itch.io/chrono-pugna)
+ - Windows (hopefully soon)
