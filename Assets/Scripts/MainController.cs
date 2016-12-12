@@ -104,6 +104,10 @@ public class MainController : MonoBehaviour {
         {
             updateDelegates[(int)sceneState]();
         }
+        if (Screen.fullScreen && Input.GetButtonUp("Cancel"))
+        {
+            Screen.fullScreen = false;
+        }
     }
 
     //--------------------------------------------------------------------------
