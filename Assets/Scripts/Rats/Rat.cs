@@ -121,6 +121,7 @@ public class Rat : MonoBehaviour
     {
         gameObject.SetActive(false);
         state=RatState.Falling;
+        gameObject.layer = LayerMask.NameToLayer("Rat");
     }
 
     public void ReceiveDamage(int damage)
@@ -145,6 +146,7 @@ public class Rat : MonoBehaviour
             state = RatState.Dead;
 
             ratSpawner.SendMessage("RatDied");
+            gameObject.layer = LayerMask.NameToLayer("dead");
 
 
             Invoke("Destroy", 3);
