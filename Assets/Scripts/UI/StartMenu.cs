@@ -17,6 +17,7 @@ public class StartMenu : MonoBehaviour
 
     private bool initialPress = false;
 
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -63,6 +64,7 @@ public class StartMenu : MonoBehaviour
         tutorial.SetActive(true);
         initialPress = false;
 
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("exit_tutorial"));
     }
 
     void HideTutorial()
