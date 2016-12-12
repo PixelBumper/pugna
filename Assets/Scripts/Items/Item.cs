@@ -11,6 +11,9 @@ public class Item : MonoBehaviour
 
     private Rigidbody2D rigidbody;
 
+    private float _invalidSeconds = 0f;
+    public float _flingInvalidSeconds = 0.7f;
+
     // Use this for initialization
     void Start()
     {
@@ -21,12 +24,15 @@ public class Item : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (_invalidSeconds > 0)
+        {
+            _invalidSeconds -= Time.deltaTime;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if ("Player".Equals(LayerMask.LayerToName(collision.gameObject.layer)))
+        if (_invalidSeconds <= 0f && "Player".Equals(LayerMask.LayerToName(collision.gameObject.layer)))
         {
             collision.gameObject.SendMessage("CollectItem", item);
             Destroy();
@@ -36,6 +42,7 @@ public class Item : MonoBehaviour
 
     public void Fling()
     {
+        _invalidSeconds = _flingInvalidSeconds;
         if (Random.value > 0.5)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(flingVelocity, flingVelocity);
