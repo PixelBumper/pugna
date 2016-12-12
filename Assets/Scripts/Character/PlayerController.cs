@@ -176,7 +176,6 @@ public class PlayerController : MonoBehaviour
             var pooledObject = kickPool.GetPooledObject();
             if (pooledObject)
             {
-                _audioSource.PlayOneShot(kick);
 
                 if (anim != null)
                 {
@@ -211,7 +210,7 @@ public class PlayerController : MonoBehaviour
                 var pooledObject = bulletPool.GetPooledObject();
                 if (pooledObject)
                 {
-                    _audioSource.PlayOneShot(laser);
+                    AudioHelper.PlayPitchAudio(_audioSource, laser);
                     pooledObject.GetComponent<Bullet>().SetShooter(gameObject);
                     currentShootCooldownSeconds = shootCooldownSeconds;
                     pooledObject.transform.position = transform.position;
@@ -332,6 +331,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!isStunned)
         {
+            AudioHelper.PlayPitchAudio(_audioSource, kick);
+
             if (anim != null)
             {
                 anim.SetTrigger("GotHit");
@@ -376,3 +377,4 @@ public class PlayerController : MonoBehaviour
         Debug.LogError("u suck");
     }
 }
+            

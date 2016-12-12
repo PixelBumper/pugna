@@ -133,7 +133,7 @@ public class Rat : MonoBehaviour
     {
         if (state != RatState.Dead)
         {
-            _audioSource.PlayOneShot(dyingSound);
+            AudioHelper.PlayPitchAudio(_audioSource, dyingSound, 0.9f, 1.2f);
             GameObject go;
             if (item == Items.Ammo)
             {
