@@ -17,6 +17,8 @@ public class StartMenu : MonoBehaviour
 
     private bool initialPress = false;
 
+    private AudioSource source;
+
 
 	// Use this for initialization
 	void Start ()
@@ -29,6 +31,8 @@ public class StartMenu : MonoBehaviour
 	    GameObject.Find("play").GetComponent<Button>().onClick.AddListener(()=>StartGame());
 	    GameObject.Find("tutorial").GetComponent<Button>().onClick.AddListener(()=>ShowTutorial());
 	    GameObject.Find("exit").GetComponent<Button>().onClick.AddListener(()=>Exit());
+
+	    source = GameObject.Find("ButtonChange").GetComponent<AudioSource>();
 	}
 
     private void Exit()
@@ -38,6 +42,11 @@ public class StartMenu : MonoBehaviour
 
     // Update is called once per frame
 	void Update () {
+	    if (Input.anyKeyDown)
+	    {
+	        source.Play();
+	    }
+
 	    if (showingTutorial && Input.GetButtonUp("Submit"))
 	    {
 	        if (initialPress)
