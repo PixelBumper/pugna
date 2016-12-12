@@ -48,6 +48,11 @@ public class PlayerController : MonoBehaviour
     private Team _team;
     private GenericPool kickPool;
 
+    public AudioClip laser;
+    public AudioClip kick;
+
+    private AudioSource _audioSource;
+
 
     // Use this for initialization
 	void Start ()
@@ -58,6 +63,7 @@ public class PlayerController : MonoBehaviour
 	    _team = GetComponent<Team>();
 	    SetCurrentHp(maxHp);
 	    ChangeBulletCountTo(bulletCount);
+	    _audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -170,6 +176,7 @@ public class PlayerController : MonoBehaviour
             var pooledObject = kickPool.GetPooledObject();
             if (pooledObject)
             {
+                _audioSource.PlayOneShot(kick);
 
                 if (anim != null)
                 {
@@ -204,6 +211,7 @@ public class PlayerController : MonoBehaviour
                 var pooledObject = bulletPool.GetPooledObject();
                 if (pooledObject)
                 {
+                    _audioSource.PlayOneShot(laser);
                     pooledObject.GetComponent<Bullet>().SetShooter(gameObject);
                     currentShootCooldownSeconds = shootCooldownSeconds;
                     pooledObject.transform.position = transform.position;

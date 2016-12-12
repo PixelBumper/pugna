@@ -27,6 +27,10 @@ public class GraphicalClock : MonoBehaviour
     public SpriteRenderer _time_panel;
     public Sprite[] _time_panel_sprites;
 
+    public AudioClip timeChangeSound;
+
+    private AudioSource _audioSource;
+
     private void Awake()
     {
         instance = this;
@@ -39,12 +43,13 @@ public class GraphicalClock : MonoBehaviour
         _backgroundChanger = GameObject.FindGameObjectWithTag("BackgroundChanger").GetComponent<BackgroundChanger>();
         childTransform = transform.GetChild(0);
         _quaternion = childTransform.rotation;
-        AddPoints(0);
         _futureGuy = GameObject.Find("futuristic_pink");
         _pastGuy = GameObject.Find("green_gladiator");
         _ratSpawner = GameObject.Find("RatSpawner");
         _victory_panel_future.SetActive(false);
         _victory_panel_past.SetActive(false);
+        _audioSource = GetComponent<AudioSource>();
+        AddPoints(0);
     }
 
     // Update is called once per frame
@@ -61,6 +66,7 @@ public class GraphicalClock : MonoBehaviour
         int previousBackgroundIndex = IndexForPoints(points);
 
         points += pointsToAdd;
+
 
         if (points > maxPoints)
         {
@@ -81,6 +87,7 @@ public class GraphicalClock : MonoBehaviour
             _victory_panel_past.SetActive(true);
             Invoke("GoToMainMenu", 7);
         }
+        _audioSource.PlayOneShot(timeChangeSound);
         points = Math.Min(maxPoints, Math.Max(-maxPoints, points));
         int currentBackgroundIndex = IndexForPoints(points);
 

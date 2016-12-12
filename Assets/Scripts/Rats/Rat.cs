@@ -24,6 +24,10 @@ public class Rat : MonoBehaviour
 
     private Animator _animator;
 
+    public AudioClip dyingSound;
+
+    private AudioSource _audioSource;
+
     public enum Items
     {
         Ammo,
@@ -52,6 +56,7 @@ public class Rat : MonoBehaviour
         state = RatState.Falling;
 
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -128,6 +133,7 @@ public class Rat : MonoBehaviour
     {
         if (state != RatState.Dead)
         {
+            _audioSource.PlayOneShot(dyingSound);
             GameObject go;
             if (item == Items.Ammo)
             {
