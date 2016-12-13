@@ -69,7 +69,7 @@ public class StartMenu : MonoBehaviour
     void ShowTutorial()
     {
         showingTutorial = true;
-        canvas.SetActive(false);
+        //canvas.SetActive(false);
         tutorial.SetActive(true);
         initialPress = false;
 
@@ -79,7 +79,7 @@ public class StartMenu : MonoBehaviour
     void HideTutorial()
     {
         tutorial.SetActive(false);
-        canvas.SetActive(true);
+        //canvas.SetActive(true);
         showingTutorial = false;
         EventSystem.current.SetSelectedGameObject(GameObject.Find("play"));
     }
