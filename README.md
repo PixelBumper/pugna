@@ -10,7 +10,11 @@ Pick up batteries being carried by rats that live inside the machinery before th
 ![game2](Screenshots/in_game_past.png "Traveling to the past")
 
 ## Controls
-Default controls:
+
+It is *highly recommended* to play **with controller** when available. The game has been optimized for Xbox (360) controllers for both Windows and Mac (Linux should work too).
+
+
+Default keyboard controls:
 
 Player 1
  - w,a,s,d to move
@@ -25,10 +29,6 @@ Player 2
  - right ctrl to jump
 
  ![tutorial](Screenshots/tutorial.png "Tutorial control")
- 
-** Note **
- - Controllers are supported, but need to be configured before the game
- - Players have 3 bullets each, powerups can be picked to shoot more
 
 ## Team
  - Giancarlo Dessena
@@ -41,11 +41,9 @@ Uses Unity 5.5.0f3
 
 ### Known missing features
  - Current build works for only two players (future versions could hold 4 easily).
- - Sound is completely missing (time!)
  - Rats should damage you when they hit you
- - Amount of bullets left is not shown
 
-  # Binaries for Download
+## Binaries for Download
+ - [Windows](ReleaseVersion/pugna_windows_1.0.0.zip)
  - [OSX](ReleaseVersion/pugna_1.0.0.zip)
  - [WebGL](https://pixelbumper.itch.io/chrono-pugna)
- - Windows (hopefully soon)
