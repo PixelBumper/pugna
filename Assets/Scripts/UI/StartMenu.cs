@@ -47,7 +47,7 @@ public class StartMenu : MonoBehaviour
 	        source.Play();
 	    }
 
-	    if (showingTutorial && Input.GetButtonUp("Submit"))
+	    if (showingTutorial && (Input.GetButtonUp("Submit") || Input.GetButtonUp("Cancel")))
 	    {
 	        if (initialPress)
 	        {
