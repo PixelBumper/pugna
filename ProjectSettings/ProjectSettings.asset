@@ -360,7 +360,7 @@ PlayerSettings:
   splashScreenBackgroundSourceLandscape: {fileID: 0}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
   spritePackerPolicy: 
-  webGLMemorySize: 1024
+  webGLMemorySize: 256
   webGLExceptionSupport: 1
   webGLDataCaching: 0
   webGLDebugSymbols: 0
