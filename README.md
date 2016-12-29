@@ -1,5 +1,5 @@
 # Chrono Pugna
-[Ludum Dare 37 game entry](http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=125037). Local multiplayer 2D game for 2 to 4 players.
+[Ludum Dare 37 game entry](http://ludumdare.com/compo/ludum-dare-37/?action=preview&uid=113185). Local multiplayer 2D game for 2 to 4 players.
 Theme: One Room
 
 Time travellers find themselves inside a time machine and they want to get back home. Unfortunately they come from opposite times and the machine can only hold one teleport! Fight against the other team in order to go back to your time.
